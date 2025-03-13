@@ -14,6 +14,22 @@ st.title("Iris Flower Classification")
 file_path = "/dataset/IRIS.csv"
 df = pd.read_csv(file_path)
 
+# Data Cleaning
+st.write("### Data Cleaning")
+# Check for missing values
+st.write("#### Missing Values:")
+st.write(df.isnull().sum())
+
+# Fill missing values with the mean of the column
+df.fillna(df.mean(), inplace=True)
+
+# Check for incorrect data types
+st.write("#### Data Types:")
+st.write(df.dtypes)
+
+# Convert columns to appropriate data types if necessary
+# Example: df['column_name'] = df['column_name'].astype('float')
+
 # Top Menu Navigation
 menu = st.tabs(["Preview","Dataset", "Evaluation"])
 
