@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 st.title("Iris Flower Classification")
 
 # Load dataset
-file_path = "dataset/IRIS.csv"
+file_path = "/dataset/IRIS.csv"
 df = pd.read_csv(file_path)
 
 # Top Menu Navigation
