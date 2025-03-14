@@ -19,9 +19,9 @@ page = st.sidebar.radio("🔍 Select menu", ["📊Classification", "📈Regressi
 if page == "📊Classification":
     st.title("Classification_iris-flower")
     # Load dataset
-    file = st.file_uploader("Upload IRIS.csv", type=["csv"])
-    if file is not None:
-        df = pd.read_csv(file)
+    file_path = "IRIS.csv"
+    if os.path.exists(file_path):
+        df = pd.read_csv(file_path)
         st.success("Dataset loaded successfully!")
     else:
         st.error("File not found. Please upload the dataset.")
@@ -134,9 +134,9 @@ if page == "📈Regression":
     st.title("Regression Model - Diabetes Prediction")
     
     # Load Regression Dataset
-    file = st.file_uploader("Upload diabetes_prediction_dataset.csv", type=["csv"])
-    if file is not None:
-        df = pd.read_csv(file)
+    file_path = "diabetes_prediction_dataset.csv"
+    if os.path.exists(file_path):
+        df = pd.read_csv(file_path)
         st.success("Diabetes dataset loaded successfully!")
     else:
         st.error("File not found. Please upload the dataset.")
