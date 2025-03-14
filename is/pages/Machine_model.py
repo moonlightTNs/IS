@@ -9,7 +9,7 @@ from sklearn.svm import SVC
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, mean_squared_error, r2_score
 import os
-import gdown
+import requests
 
 # Sidebar for navigation
 st.sidebar.title("📌Menu")
@@ -24,8 +24,11 @@ if page == "📊Classification":
     url = f"https://drive.google.com/uc?export=download&id={file_id}"
     output = "IRIS.csv"
 
-    file_path = os.system(f"wget -O {output} '{url}'")
+    response = requests.get(url, allow_redirects=True)
+    with open(output, "wb") as file:
+        file.write(response.content)
 
+    print(f"Downloaded {output}")
     # Load dataset
     
     if os.path.exists(file_path):
