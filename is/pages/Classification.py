@@ -7,12 +7,14 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
+
 # Title
 st.title("Iris Flower Classification")
 
 # Load dataset
-file_path = "dataset/IRIS.csv"
-df = pd.read_csv(file_path)
+url = "https://raw.githubusercontent.com/moonlightTNs/IS/main/is/dataset/IRIS.csv"
+df = pd.read_csv(url)
+
 
 # Data Cleaning
 st.write("### Data Cleaning")
@@ -27,8 +29,15 @@ df.fillna(df.mean(), inplace=True)
 st.write("#### Data Types:")
 st.write(df.dtypes)
 
-# Convert columns to appropriate data types if necessary
-# Example: df['column_name'] = df['column_name'].astype('float')
+# Fix concatenated strings in the species column
+df["species"] = df["species"].astype(str).str.extract(r'(Iris-setosa|Iris-versicolor|Iris-virginica)', expand=False)
+
+df.dropna(inplace=True)  # ลบแถวที่มีค่า NaN
+encoder = LabelEncoder()
+df["species"] = encoder.fit_transform(df["species"])
+
+num_cols = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
+df[num_cols] = df[num_cols].apply(pd.to_numeric, errors="coerce")
 
 # Top Menu Navigation
 menu = st.tabs(["Preview","Dataset", "Evaluation"])
