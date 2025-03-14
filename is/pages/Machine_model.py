@@ -9,7 +9,7 @@ from sklearn.svm import SVC
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, mean_squared_error, r2_score
 import os
-import requests
+import gdown
 
 # Sidebar for navigation
 st.sidebar.title("📌Menu")
@@ -22,15 +22,11 @@ if page == "📊Classification":
     # Download dataset from Google Drive
     file_id = "11BcqbyHuhMzPrzcwVOoXOWQSAxR-xk_l"
     url = f"https://drive.google.com/uc?export=download&id={file_id}"
-    output = "IRIS.csv"
+    output = 'IRIS.csv'
+    gdown.download(url, output, quiet=False)
 
-    response = requests.get(url, allow_redirects=True)
-    with open(output, "wb") as file:
-        file.write(response.content)
-
-    print(f"Downloaded {output}")
     # Load dataset
-    
+    file_path = "IRIS.csv"
     if os.path.exists(file_path):
         df = pd.read_csv(file_path)
         st.success("Dataset loaded successfully!")
@@ -148,7 +144,7 @@ if page == "📈Regression":
     file_id = "1jeAudHd12NyJJDLdjPH9KmikgAi_c_IX"
     url = f"https://drive.google.com/uc?export=download&id={file_id}"
     output = 'diabetes_prediction_dataset.csv'
-    gdown.download(url, output=output, use_cookies=False, quiet=False)
+    gdown.download(url, output, quiet=False)
 
     # Load Regression Dataset
     file_path = "diabetes_prediction_dataset.csv"
