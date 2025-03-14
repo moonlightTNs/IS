@@ -23,7 +23,7 @@ if page == "📊Classification":
     file_id = "11BcqbyHuhMzPrzcwVOoXOWQSAxR-xk_l"
     url = f"https://drive.google.com/uc?export=download&id={file_id}"
     output = 'IRIS.csv'
-    gdown.download(id=file_id, output, quiet=False , fuzzy=True)
+    gdown.download(url, output, quiet=False, fuzzy=True)
 
     # Load dataset
     file_path = "IRIS.csv"
