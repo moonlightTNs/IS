@@ -19,7 +19,7 @@ page = st.sidebar.radio("🔍 Select menu", ["📊Classification", "📈Regressi
 if page == "📊Classification":
     st.title("Classification_iris-flower")
     # Load dataset
-    file_path = "dataset/IRIS.csv"
+    file_path = "https://raw.githubusercontent.com/moonlightTNs/IS/main/is/dataset/IRIS.csv"
     if os.path.exists(file_path):
         df = pd.read_csv(file_path)
         st.success("Dataset loaded successfully!")
@@ -134,7 +134,7 @@ if page == "📈Regression":
     st.title("Regression Model - Diabetes Prediction")
     
     # Load Regression Dataset
-    file_path = "dataset/diabetes_prediction_dataset.csv"
+    file_path = "https://raw.githubusercontent.com/moonlightTNs/IS/main/is/dataset/diabetes_prediction_dataset.csv"
     if os.path.exists(file_path):
         df = pd.read_csv(file_path)
         st.success("Diabetes dataset loaded successfully!")
