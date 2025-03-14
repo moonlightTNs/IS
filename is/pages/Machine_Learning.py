@@ -6,38 +6,21 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-
+import os
 
 # Title
 st.title("Iris Flower Classification")
 
 # Load dataset
-url = "https://raw.githubusercontent.com/moonlightTNs/IS/main/is/dataset/IRIS.csv"
-df = pd.read_csv(url)
+file_path = "dataset/IRIS.csv"
+# ตรวจสอบว่าไฟล์มีอยู่จริง
+if os.path.exists(file_path):
+    df = pd.read_csv(file_path)
+    st.success("Dataset loaded successfully!")
+else:
+    st.error("File not found. Please upload the dataset.")
 
 
-# Data Cleaning
-st.write("### Data Cleaning")
-# Check for missing values
-st.write("#### Missing Values:")
-st.write(df.isnull().sum())
-
-# Fill missing values with the mean of the column
-df.fillna(df.mean(), inplace=True)
-
-# Check for incorrect data types
-st.write("#### Data Types:")
-st.write(df.dtypes)
-
-# Fix concatenated strings in the species column
-df["species"] = df["species"].astype(str).str.extract(r'(Iris-setosa|Iris-versicolor|Iris-virginica)', expand=False)
-
-df.dropna(inplace=True)  # ลบแถวที่มีค่า NaN
-encoder = LabelEncoder()
-df["species"] = encoder.fit_transform(df["species"])
-
-num_cols = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
-df[num_cols] = df[num_cols].apply(pd.to_numeric, errors="coerce")
 
 # Top Menu Navigation
 menu = st.tabs(["Preview","Dataset", "Evaluation"])
@@ -71,6 +54,40 @@ with menu[1]:
     
     # Train/Test Split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    
+    
+    if 'df' in locals():
+        st.write("### Preview of Dataset (Before Cleaning)")
+        st.dataframe(df.head())
+
+    # Data Cleaning
+    st.write("## Data Cleaning")
+
+    # ตรวจสอบค่า Missing
+    st.write("### 🔍 Missing Values (Before Cleaning)")
+    st.write(df.isnull().sum())
+
+    
+
+    # คอลัมน์ตัวเลขที่ต้องใช้
+    num_cols = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
+
+    # แปลงให้เป็นตัวเลข และจัดการค่า NaN
+    df[num_cols] = df[num_cols].apply(pd.to_numeric, errors="coerce")
+
+    # เติมค่า NaN ด้วยค่าเฉลี่ยของคอลัมน์นั้น
+    df[num_cols] = df[num_cols].fillna(df[num_cols].mean())
+
+    # ตรวจสอบ species ที่มีค่าผิดปกติ และแก้ไข
+    df["species"] = df["species"].astype(str).str.extract(r'(Iris-setosa|Iris-versicolor|Iris-virginica)', expand=False)
+
+    # ลบแถวที่มีค่า NaN หลังจากการแก้ไขข้อมูลผิดพลาด
+    df.dropna(inplace=True)
+
+
+    # ตรวจสอบค่า Missing หลังทำความสะอาด
+    st.write("### 🔍 Missing Values (After Cleaning)")
+    st.write(df.isnull().sum())
     
     # Train Model
     model = RandomForestClassifier(n_estimators=100, random_state=42)
