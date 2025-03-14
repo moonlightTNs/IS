@@ -24,10 +24,10 @@ if page == "📊Classification":
     url = f"https://drive.google.com/uc?export=download&id={file_id}"
     output = "IRIS.csv"
 
-    os.system(f"wget -O {output} '{url}'")
+    file_path = os.system(f"wget -O {output} '{url}'")
 
     # Load dataset
-    file_path = "IRIS.csv"
+    
     if os.path.exists(file_path):
         df = pd.read_csv(file_path)
         st.success("Dataset loaded successfully!")
