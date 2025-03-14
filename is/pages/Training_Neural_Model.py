@@ -10,11 +10,24 @@ from sklearn.metrics import confusion_matrix
 # Load and preprocess the CIFAR-10 dataset
 (train_images, train_labels), (test_images, test_labels) = datasets.cifar10.load_data()
 
+# Define the class names
+class_names = ['cat', 'dog', 'ship']
+
+# Filter the dataset to include only the selected classes
+selected_classes = [3, 5, 8]  # cat, dog, ship
+train_filter = np.isin(train_labels, selected_classes).flatten()
+test_filter = np.isin(test_labels, selected_classes).flatten()
+
+train_images, train_labels = train_images[train_filter], train_labels[train_filter]
+test_images, test_labels = test_images[test_filter], test_labels[test_filter]
+
 # Normalize pixel values to be between 0 and 1
 train_images, test_images = train_images / 255.0, test_images / 255.0
 
-# Define the class names
-class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+# Map the labels to the new class indices
+label_map = {3: 0, 5: 1, 8: 2}
+train_labels = np.vectorize(label_map.get)(train_labels)
+test_labels = np.vectorize(label_map.get)(test_labels)
 
 # Build the CNN model
 model = models.Sequential([
@@ -25,7 +38,7 @@ model = models.Sequential([
     layers.Conv2D(64, (3, 3), activation='relu'),
     layers.Flatten(),
     layers.Dense(64, activation='relu'),
-    layers.Dense(10, activation='softmax')  # Change to 10 classes for CIFAR-10
+    layers.Dense(3, activation='softmax')  # Change to 3 classes
 ])
 
 # Compile the model
@@ -98,7 +111,7 @@ if page == "🧠📸CNN":
 
 if page == "🏗️🤖Model":
     st.title("Predict with the Model")
-    st.write("You can upload an image of any class in CIFAR-10")
+    st.write("You can upload an image `cat`, `dog`, `ship` to make a prediction.")
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
     if uploaded_file is not None:
