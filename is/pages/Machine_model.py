@@ -22,8 +22,9 @@ if page == "📊Classification":
     # Download dataset from Google Drive
     file_id = "11BcqbyHuhMzPrzcwVOoXOWQSAxR-xk_l"
     url = f"https://drive.google.com/uc?export=download&id={file_id}"
-    output = 'IRIS.csv'
-    gdown.download(id=file_id, output=output, quiet=False)
+    output = "IRIS.csv"
+
+    os.system(f"wget -O {output} '{url}'")
 
     # Load dataset
     file_path = "IRIS.csv"
@@ -144,7 +145,7 @@ if page == "📈Regression":
     file_id = "1jeAudHd12NyJJDLdjPH9KmikgAi_c_IX"
     url = f"https://drive.google.com/uc?export=download&id={file_id}"
     output = 'diabetes_prediction_dataset.csv'
-    gdown.download(url, output=output, quiet=False)
+    gdown.download(url, output=output, use_cookies=False, quiet=False)
 
     # Load Regression Dataset
     file_path = "diabetes_prediction_dataset.csv"
