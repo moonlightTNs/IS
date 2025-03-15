@@ -19,7 +19,7 @@ page = st.sidebar.radio("🔍 Select menu", ["📊Classification", "📈Regressi
 
 if page == "📊Classification":
     st.title("Classification Model - iris-flower")
-    file_path = "datasets/IRIS.csv"
+    file_path = "is/datasets/IRIS.csv"
     
     try:
         df = pd.read_csv(file_path)
@@ -95,7 +95,7 @@ if page == "📈Regression":
     
     try:
         df = pd.read_csv(file_path)
-        st.success("Diabetes dataset loaded successfully!")
+        st.success("is/Diabetes dataset loaded successfully!")
     except FileNotFoundError as e:
         st.error(str(e))
         st.stop()
