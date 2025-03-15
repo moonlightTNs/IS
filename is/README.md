@@ -13,7 +13,6 @@
 
 ## 🧠 Neural Network
 🔹 **[Model-NL](https://github.com/moonlightTNs/IS/blob/main/is/pages/Training_Neural_Model.py)**
-- 🔗 **Multi-Output**
 
 ## 🌍 Web Application
 🌐 **Streamlit App:** [คลิกเพื่อใช้งาน 🚀](https://project-is-thanop.streamlit.app)
