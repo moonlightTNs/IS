@@ -11,6 +11,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import os
 import gdown
 
+
 # Sidebar for navigation
 st.sidebar.title("📌Menu")
 page = st.sidebar.radio("🔍 Select menu", ["📊Classification", "📈Regression"])
@@ -19,14 +20,9 @@ page = st.sidebar.radio("🔍 Select menu", ["📊Classification", "📈Regressi
 
 if page == "📊Classification":
     st.title("Classification_iris-flower")
-    # Download dataset from Google Drive
-    file_id = "11BcqbyHuhMzPrzcwVOoXOWQSAxR-xk_l"
-    url = f"https://drive.google.com/uc?export=download&id={file_id}"
-    output = 'IRIS.csv'
-    gdown.download(url, output, quiet=False)
-
     # Load dataset
-    file_path = "IRIS.csv"
+    file_path = "pages/datasets/IRIS.csv"
+    
     if os.path.exists(file_path):
         df = pd.read_csv(file_path)
         st.success("Dataset loaded successfully!")
@@ -140,16 +136,11 @@ if page == "📊Classification":
 if page == "📈Regression":
     st.title("Regression Model - Diabetes Prediction")
     
-    # Download dataset from Google Drive
-    file_id = "1jeAudHd12NyJJDLdjPH9KmikgAi_c_IX"
-    url = f"https://drive.google.com/uc?export=download&id={file_id}"
-    output = 'diabetes_prediction_dataset.csv'
-    gdown.download(url, output, quiet=False)
-
     # Load Regression Dataset
-    file_path = "diabetes_prediction_dataset.csv"
+    file_path = "pages/datasets/diabetes_prediction_dataset.csv"
     if os.path.exists(file_path):
-        df = pd.read_csv(file_path)
+        with open(file_path, 'rb') as f:
+            df = pd.read_csv(f)
         st.success("Diabetes dataset loaded successfully!")
     else:
         st.error("File not found. Please upload the dataset.")
