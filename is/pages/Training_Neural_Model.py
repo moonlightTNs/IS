@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import confusion_matrix
-from models.CNN_model import get_model, get_history, get_class_names, get_test_data
+from models.CNN_model import get_model, get_class_names, get_test_data
 
 # Sidebar for navigation
 st.sidebar.title("📌Menu")
@@ -14,7 +14,6 @@ page = st.sidebar.radio("🔍 Select menu", ["🧠📸CNN", "🏗️🤖Model"])
 if 'model_trained' not in st.session_state:
     with st.spinner('Loading the model...'):
         model = get_model()
-        history = get_history()
         train_images, train_labels, test_images, test_labels = get_test_data()
         class_names = get_class_names()
     with st.spinner('Training the model...'):

@@ -41,16 +41,8 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-# Train the model
-history = model.fit(train_images, train_labels, epochs=10, 
-                    validation_data=(test_images, test_labels))
-
-# Save the model and history in session state
 def get_model():
     return model
-
-def get_history():
-    return history
 
 def get_class_names():
     return class_names
