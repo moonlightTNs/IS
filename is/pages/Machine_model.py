@@ -137,7 +137,7 @@ if page == "📈Regression":
     st.title("Regression Model - Diabetes Prediction")
     
     # Load Regression Dataset
-    file_path = "is/pages/diabetes_prediction_dataset.csv"
+    file_path = "is/pages/datasets/diabetes_prediction_dataset.csv"
     if os.path.exists(file_path):
         with open(file_path, 'rb') as f:
             df = pd.read_csv(f)

@@ -8,20 +8,18 @@ st.write("""
 
 ### 🔄 Loading Data
 - Used `pandas` to read data from the file `IRIS.csv | diabetes_prediction_dataset.csv`.
-- Load dataset from: [Kaggle](https://www.kaggle.com/).
 - Inspected the dataset to understand the structure and types of data.
 
 ### 🧹 Handling Missing Values
-- Used `fillna()` `dropna()` method to replace missing values with the mean of each column.
+- Used `fillna()` method to replace missing values with the mean of each column.
 - Used `dropna()` to remove rows with missing values.
-- Used `SimpleImputer()` to fill missing values with the mean of each column.
 - Ensures data completeness and reduces bias caused by missing values.
 - Checked for outliers using **Boxplot** and handled extreme values.
 
 ### 🔍 Separating Features and Labels
 ##### Data Preprocessing
 - **X (Features):):** Input variables used for prediction, such as information about flower characteristics or health data.
-- **y (Label):** Target variable to be predicted, such as drinking water status (0 = not drinking, 1 = drinking)
+- **y (Label):** Output variable to predict, such as the species of the flower or diabetes status.
 - Check the relationship of Features to eliminate redundant variables.
 
 ### 🔄 Train-Test Split
@@ -43,9 +41,7 @@ st.write("""
 
 ### 🧠 2. Support Vector Machine (SVM)
 - **SVM** finds the optimal hyperplane for classification.
-- Uses **Kernel Trick** to handle **non-linear data**.
 - **Weakness:** It is computationally expensive for large datasets.
-
 
 ---
 
@@ -64,10 +60,11 @@ st.write("""
 - Generated a **classification_report** to assess `Precision`, `Recall`, and`F1-score`.
 - Used **Confusion Matrix** for better insights into classification errors.
 
-### ⚖️ Comparing Model Performance
-- Compared **Random Forest, Logistic Regression, and SVM**.
-- Analyzed **ROC-AUC Score** and **Precision-Recall Curve**.
-- Determined the best model based on real-world generalization ability.
-
 ---
+### Reference🔗
+#### Dataset : 
+- Classification : Use [IRIS](https://www.kaggle.com/datasets/arshid/iris-flower-dataset)
+- Regression : Use [diabetes_prediction_dataset](https://www.kaggle.com/datasets/dat00700/diabetes-prediction-dataset)
+#### Scikit-learn Documentation
+- Use [Scikit-learn](https://scikit-learn.org/stable/index.html)
 """)
