@@ -18,15 +18,18 @@ page = st.sidebar.radio("🔍 Select menu", ["📊Classification", "📈Regressi
 #--------------------------------------------------------------------------------------------------------------
 
 if page == "📊Classification":
-    st.title("Classification_iris-flower")
-    file_path = "is/datasets/IRIS.csv"
+    st.title("Classification Model - iris-flower")
+    file_path = "datasets/IRIS.csv"
     
     try:
-        X, y, encoder = load_classification_data(file_path)
+        df = pd.read_csv(file_path)
         st.success("Iris dataset loaded successfully!")
     except FileNotFoundError as e:
         st.error(str(e))
         st.stop()
+
+   
+    X, y, encoder = load_classification_data(file_path)
 
     st.write("### Dataset Information")
     st.write("The Iris dataset contains 150 samples of iris flowers, with 50 samples from each of three species: Iris setosa, Iris versicolor, and Iris virginica. Each sample has four features:")
@@ -37,7 +40,18 @@ if page == "📊Classification":
     st.write("The target variable is the species of the iris flower, which is a categorical variable with three possible values: setosa, versicolor, and virginica.")
 
     st.write("### Full Dataset:")
-    st.dataframe(pd.read_csv(file_path))
+    st.dataframe(df)
+     # Display missing values before data cleansing
+    st.write("### Missing Values Before Data Cleansing")
+    st.write(df.isnull().sum())
+
+    # Data Cleansing (example: dropping rows with missing values)
+    df.dropna(inplace=True)
+
+    # Display missing values after data cleansing
+    st.write("### Missing Values After Data Cleansing")
+    st.write(df.isnull().sum())
+
 
     st.write("### Train Models")
     rf_model, svm_model, X_test, y_test = train_classification_models(X, y)
@@ -77,14 +91,18 @@ if page == "📊Classification":
 
 if page == "📈Regression":
     st.title("Regression Model - Diabetes Prediction")
-    file_path = "is/datasets/diabetes_prediction_dataset.csv"
+    file_path = "datasets/diabetes_prediction_dataset.csv"
     
     try:
-        X, y = load_regression_data(file_path)
+        df = pd.read_csv(file_path)
         st.success("Diabetes dataset loaded successfully!")
     except FileNotFoundError as e:
         st.error(str(e))
         st.stop()
+
+    
+
+    X, y = load_regression_data(file_path)
 
     st.write("### Dataset Information")
     st.write("The Diabetes dataset contains various features related to diabetes prediction. Each sample has the following features:")
@@ -99,7 +117,19 @@ if page == "📈Regression":
     st.write("- **Diabetes**: The target variable indicating whether the individual has diabetes (1) or not (0).")
 
     st.write("### Full Dataset:")
-    st.dataframe(pd.read_csv(file_path))
+    st.dataframe(df)
+    
+    # Display missing values before data cleansing
+    st.write("### Missing Values Before Data Cleansing")
+    st.write(df.isnull().sum())
+
+    # Data Cleansing (example: filling missing values with mean)
+    numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns
+    df[numeric_columns] = df[numeric_columns].fillna(df[numeric_columns].mean())
+
+    # Display missing values after data cleansing
+    st.write("### Missing Values After Data Cleansing")
+    st.write(df.isnull().sum())
 
     st.write("### Train Model")
     reg_model, X_test, y_test = train_regression_model(X, y)
