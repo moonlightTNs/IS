@@ -117,17 +117,19 @@ if page == "🏗️🤖Model":
     if uploaded_file is not None:
         # Convert the file to an image
         image = Image.open(uploaded_file)
-        st.image(image, caption='Uploaded Image.', use_container_width=True)
         
         # Preprocess the image
-        image = image.resize((32, 32))
-        image = np.array(image)
-        image = image / 255.0
-        image = np.expand_dims(image, axis=0)
+        image_resized = image.resize((32, 32))
+        image_array = np.array(image_resized)
+        image_array = image_array / 255.0
+        image_array = np.expand_dims(image_array, axis=0)
         
         # Make a prediction
         if 'model' in st.session_state:
             model = st.session_state['model']
-            prediction = model.predict(image)
+            prediction = model.predict(image_array)
             class_name = class_names[np.argmax(prediction)]
             st.write(f"#### The model predicts this image is a: `{class_name}`")
+        
+        # Display the image
+        st.image(image, caption='Uploaded Image.', use_container_width=True, width=300)  # Limit the width to 300 pixels
