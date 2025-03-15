@@ -91,11 +91,11 @@ if page == "📊Classification":
 
 if page == "📈Regression":
     st.title("Regression Model - Diabetes Prediction")
-    file_path = "datasets/diabetes_prediction_dataset.csv"
+    file_path = "is/datasets/diabetes_prediction_dataset.csv"
     
     try:
         df = pd.read_csv(file_path)
-        st.success("is/Diabetes dataset loaded successfully!")
+        st.success("Diabetes dataset loaded successfully!")
     except FileNotFoundError as e:
         st.error(str(e))
         st.stop()
