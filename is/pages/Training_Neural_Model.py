@@ -35,10 +35,11 @@ if page == "🧠📸CNN":
     st.title("Convolutional Neural Network (CNN) for CIFAR-10")
     st.write("### Example Dataset")
     # Display example images from the dataset
-    fig, axes = plt.subplots(1, 5, figsize=(15, 3))
-    for i, ax in enumerate(axes):
-        ax.imshow(test_images[i])
-        ax.set_title(class_names[test_labels[i][0]])
+    fig, axes = plt.subplots(2, 5, figsize=(15, 6))
+    for i, ax in enumerate(axes.flat):
+        idx = np.where(test_labels == i)[0][0]
+        ax.imshow(test_images[idx])
+        ax.set_title(class_names[i])
         ax.axis('off')
     st.pyplot(fig)
 
@@ -80,7 +81,7 @@ if page == "🧠📸CNN":
 
 if page == "🏗️🤖Model":
     st.title("Predict with the Model")
-    st.write("You can upload an image `cat`, `dog`, `ship` to make a prediction.")
+    st.write("You can upload images of CIFAR-10 to make predictions.")
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
     if uploaded_file is not None:
