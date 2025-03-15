@@ -3,8 +3,8 @@
 ## 📊 Data Analysis using SVM & RF
 
 ### 📂 Dataset 📁
-- 🌸 [IRIS Dataset](https://github.com/moonlightTNs/IS/blob/main/is/pages/datasets/IRIS.csv)
-- 🩺 [Diabetes Prediction Dataset](https://github.com/moonlightTNs/IS/blob/main/is/pages/datasets/diabetes_prediction_dataset.csv)
+- 🌸 [IRIS Dataset](https://github.com/moonlightTNs/IS/blob/main/is/datasets/IRIS.csv)
+- 🩺 [Diabetes Prediction Dataset](https://github.com/moonlightTNs/IS/blob/main/is/datasets/diabetes_prediction_dataset.csv)
 
 ## 🤖 Machine Learning Models
 🔹 **[Model-ML](https://github.com/moonlightTNs/IS/blob/main/is/models/Machine_model.py)**
