@@ -6,10 +6,6 @@ import seaborn as sns
 from sklearn.metrics import confusion_matrix
 from models.CNN_model import get_model, get_class_names, get_test_data
 
-# Sidebar for navigation
-st.sidebar.title("📌Menu")
-page = st.sidebar.radio("🔍 Select menu", ["🧠📸CNN", "🏗️🤖Model"])
-
 # Check if the model is already trained and stored in session state
 if 'model_trained' not in st.session_state:
     with st.spinner('Loading the model...'):
@@ -30,7 +26,10 @@ else:
         st.session_state['class_names'] = get_class_names()
     class_names = st.session_state['class_names']
     train_images, train_labels, test_images, test_labels = get_test_data()
-
+    
+# Sidebar for navigation
+st.sidebar.title("📌Menu")
+page = st.sidebar.radio("🔍 Select menu", ["🧠📸CNN", "🏗️🤖Model"])
 if page == "🧠📸CNN":
     st.title("Convolutional Neural Network (CNN) for CIFAR-10")
     st.write("### Example Dataset")
