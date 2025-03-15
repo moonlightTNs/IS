@@ -15,4 +15,4 @@
 🔹 **[Model-NL](https://github.com/moonlightTNs/IS/blob/main/is/pages/Training_Neural_Model.py)**
 
 ## 🌍 Web Application
-🌐 **Streamlit App:** [คลิกเพื่อใช้งาน 🚀](https://project-is-thanop.streamlit.app)
+🌐 **Streamlit App:** [คลิกเพื่อใช้งาน🚀](https://project-is-thanop.streamlit.app)
