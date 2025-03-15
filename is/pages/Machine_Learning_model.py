@@ -23,7 +23,7 @@ if page == "📊Classification":
     
     try:
         X, y, encoder = load_classification_data(file_path)
-        st.success("Dataset loaded successfully!")
+        st.success("Iris dataset loaded successfully!")
     except FileNotFoundError as e:
         st.error(str(e))
         st.stop()
