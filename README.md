@@ -3,8 +3,8 @@
 ## 📊 Data Analysis using SVM & RF
 
 ### 📂 Dataset 📁
-- 🌸 [IRIS Dataset](https://www.kaggle.com/datasets/arshid/iris-flower-dataset)
-- 🩺 [Diabetes Prediction Dataset](https://www.kaggle.com/datasets/dat00700/diabetes-prediction-dataset)
+- 🌸 [IRIS Dataset](https://github.com/moonlightTNs/IS/blob/main/is/pages/datasets/IRIS.csv)
+- 🩺 [Diabetes Prediction Dataset](https://github.com/moonlightTNs/IS/blob/main/is/pages/datasets/diabetes_prediction_dataset.csv)
 
 ## 🤖 Machine Learning Models
 🔹 **[Model-ML](https://github.com/moonlightTNs/IS/blob/main/is/pages/Machine_Learning_model.py)**
