@@ -21,7 +21,7 @@ page = st.sidebar.radio("🔍 Select menu", ["📊Classification", "📈Regressi
 if page == "📊Classification":
     st.title("Classification_iris-flower")
     # Load dataset
-    file_path = "pages/datasets/IRIS.csv"
+    file_path = "is/pages/datasets/IRIS.csv"
     
     if os.path.exists(file_path):
         df = pd.read_csv(file_path)
@@ -137,7 +137,7 @@ if page == "📈Regression":
     st.title("Regression Model - Diabetes Prediction")
     
     # Load Regression Dataset
-    file_path = "pages/datasets/diabetes_prediction_dataset.csv"
+    file_path = "diabetes_prediction_dataset.csv"
     if os.path.exists(file_path):
         with open(file_path, 'rb') as f:
             df = pd.read_csv(f)
