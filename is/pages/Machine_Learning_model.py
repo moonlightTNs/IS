@@ -136,5 +136,10 @@ if page == "📈Regression":
     plt.title("Distribution of Residuals")
     st.pyplot(fig)
 
+    # Reasons for using the algorithms
+    st.write("### Reasons for Using the Algorithms")
+    st.write("- **Linear Regression**: It is a simple and interpretable model that works well when there is a linear relationship between the features and the target variable. It is useful for understanding the impact of each feature on the target variable.")
+    st.write("- **Random Forest Regressor**: It is an ensemble method that combines multiple decision trees to improve accuracy and reduce overfitting. It works well with complex datasets and can capture non-linear relationships between the features and the target variable.")
+
 
 
