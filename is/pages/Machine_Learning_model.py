@@ -17,18 +17,33 @@ page = st.sidebar.radio("🔍 Select menu", ["📊Classification", "📈Regressi
 
 #--------------------------------------------------------------------------------------------------------------
 
+@st.cache_resource
+def load_data(file_path):
+    return pd.read_csv(file_path)
+
+@st.cache_resource
+def train_classification(file_path):
+    X, y, encoder = load_classification_data(file_path)
+    rf_model, svm_model, X_test, y_test = train_classification_models(X, y)
+    return rf_model, svm_model, X_test, y_test, encoder
+
+@st.cache_resource
+def train_regression(file_path):
+    X, y = load_regression_data(file_path)
+    reg_model, X_test, y_test = train_regression_model(X, y)
+    return reg_model, X_test, y_test
+
 if page == "📊Classification":
     st.title("Classification Model - iris-flower")
     file_path = "is/datasets/IRIS.csv"
     
     try:
-        df = pd.read_csv(file_path)
+        df = load_data(file_path)
         st.success("Iris dataset loaded successfully!")
     except FileNotFoundError as e:
         st.error(str(e))
         st.stop()
 
-   
     X, y, encoder = load_classification_data(file_path)
 
     st.write("### Dataset Information")
@@ -52,9 +67,8 @@ if page == "📊Classification":
     st.write("### Missing Values After Data Cleansing")
     st.write(df.isnull().sum())
 
-
     st.write("### Train Models")
-    rf_model, svm_model, X_test, y_test = train_classification_models(X, y)
+    rf_model, svm_model, X_test, y_test, encoder = train_classification(file_path)
 
     rf_pred = rf_model.predict(X_test)
     rf_accuracy = accuracy_score(y_test, rf_pred)
@@ -82,7 +96,7 @@ if page == "📊Classification":
     plt.title("SVM Confusion Matrix")
     st.pyplot(fig)
 
-# Reasons for using the algorithms
+    # Reasons for using the algorithms
     st.write("### Reasons for Using the Algorithms")
     st.write("- **Random Forest**: It is an ensemble method that combines multiple decision trees to improve accuracy and reduce overfitting. It works well with the Iris dataset because it can handle the multi-class classification problem effectively and is robust to overfitting.")
     st.write("- **Support Vector Machine**: It is effective in high-dimensional spaces and is versatile with different kernel functions. SVM works well with the Iris dataset because it can find the optimal hyperplane that separates the classes with maximum margin, making it suitable for the multi-class classification problem.")
@@ -94,13 +108,11 @@ if page == "📈Regression":
     file_path = "is/datasets/diabetes_prediction_dataset.csv"
     
     try:
-        df = pd.read_csv(file_path)
+        df = load_data(file_path)
         st.success("Diabetes dataset loaded successfully!")
     except FileNotFoundError as e:
         st.error(str(e))
         st.stop()
-
-    
 
     X, y = load_regression_data(file_path)
 
@@ -132,7 +144,7 @@ if page == "📈Regression":
     st.write(df.isnull().sum())
 
     st.write("### Train Model")
-    reg_model, X_test, y_test = train_regression_model(X, y)
+    reg_model, X_test, y_test = train_regression(file_path)
     y_pred = reg_model.predict(X_test)
 
     mse = mean_squared_error(y_test, y_pred)
