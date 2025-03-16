@@ -6,8 +6,8 @@ import numpy as np
 (train_images, train_labels), (test_images, test_labels) = datasets.cifar10.load_data()
 
 # Define the class names for the selected CIFAR-10 classes
-selected_classes = [0, 1, 2, 3, 4]  # airplane, automobile, bird, cat, deer
-class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer']
+selected_classes = [0, 1, 3, 5]  # airplane, automobile, cat, dog
+class_names = ['airplane', 'automobile', 'cat', 'dog']
 
 # Filter the dataset to include only the selected classes
 train_filter = np.isin(train_labels, selected_classes).flatten()
@@ -16,7 +16,7 @@ test_filter = np.isin(test_labels, selected_classes).flatten()
 train_images, train_labels = train_images[train_filter], train_labels[train_filter]
 test_images, test_labels = test_images[test_filter], test_labels[test_filter]
 
-# Update labels to be in the range 0-4
+# Update labels to be in the range 0-3
 train_labels = np.array([np.where(selected_classes == label)[0][0] for label in train_labels])
 test_labels = np.array([np.where(selected_classes == label)[0][0] for label in test_labels])
 
@@ -32,7 +32,7 @@ model = models.Sequential([
     layers.Conv2D(64, (3, 3), activation='relu'),
     layers.Flatten(),
     layers.Dense(64, activation='relu'),
-    layers.Dense(5, activation='softmax')  # Change to 5 classes
+    layers.Dense(4, activation='softmax')  # Change to 4 classes
 ])
 
 # Compile the model
