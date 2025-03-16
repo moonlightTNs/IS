@@ -137,7 +137,7 @@ if page == "📈Regression":
 
     # Data Cleansing (example: filling missing values with mean)
     numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns
-    df[numeric_columns] = df[numeric_columns].fillna(df[numeric_columns].mean())
+    df[numeric_columns] = df[numeric_columns].replace([float('inf'), -float('inf')], float('nan')).fillna(df[numeric_columns].mean())
 
     # Display missing values after data cleansing
     st.write("### Missing Values After Data Cleansing")
