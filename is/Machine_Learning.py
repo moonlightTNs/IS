@@ -1,7 +1,6 @@
 import streamlit as st
 import asyncio
 
-
 # ตรวจสอบ event loop
 try:
     loop = asyncio.get_running_loop()
@@ -9,7 +8,7 @@ except RuntimeError:
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
-st.set_option("server.fileWatcherType", "none")
+# st.set_option("server.fileWatcherType", "none")
 
 st.title("Machine Learning Application")
 
