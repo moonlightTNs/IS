@@ -9,6 +9,7 @@ except RuntimeError:
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
+st.set_option("server.fileWatcherType", "none")
 
 st.title("Machine Learning Application")
 
